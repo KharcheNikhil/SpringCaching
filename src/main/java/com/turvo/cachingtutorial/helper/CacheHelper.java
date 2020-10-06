@@ -68,6 +68,16 @@ public class CacheHelper {
     return appointments.get(0);
   }
 
+  @Cacheable(key = "#appointmentId", cacheNames = "getAppointmentFromRedis", cacheManager = "redisCacheManager")
+  public Appointment getAppointmentFromRedis(UUID appointmentId) {
+    log.info("Implememntation gets called {}, appointmentId: {}", "getAppointmentFromRedis", appointmentId);
+    List<Appointment> appointments = repository.findByAppointmentId(appointmentId);
+    if(appointments == null || appointments.size() == 0){
+      return null;
+    }
+    return appointments.get(0);
+  }
+
   @CacheEvict(
       allEntries = true,
       cacheNames = {"getAppointmentFromCache"},

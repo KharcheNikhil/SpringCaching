@@ -28,6 +28,10 @@ public class AppointmentHelper {
     return cacheHelper.getAppointmentFromCache(appointmentId);
   }
 
+  public Appointment findByAppointmentIdRedis(UUID appointmentId) {
+    return cacheHelper.getAppointmentFromRedis(appointmentId);
+  }
+
   public Appointment doNotWork(UUID appointmentId) {
     return doNotWorkCached(appointmentId);
   }

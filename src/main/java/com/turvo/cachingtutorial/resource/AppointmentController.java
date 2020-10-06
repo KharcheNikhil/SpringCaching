@@ -28,6 +28,11 @@ public class AppointmentController {
     return ResponseEntity.ok(appointmentHelper.findByAppointmentId(id));
   }
 
+  @GetMapping("/redis/{id}")
+  public ResponseEntity<Appointment> findOneRedis(@PathVariable("id") UUID id){
+    return ResponseEntity.ok(appointmentHelper.findByAppointmentIdRedis(id));
+  }
+
   @GetMapping("/not_working")
   public ResponseEntity<Appointment> findOne(){
     return ResponseEntity.ok(appointmentHelper.doNotWork(null));
